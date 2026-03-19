@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Muhammad Farhan | Portfolio</title>
+<!-- BEGIN: External Resources -->
+<!-- Google Fonts: Poppins (Headings) and Inter (Body) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Poppins:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Lucide Icons CDN -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<!-- Scroll Reveal Library -->
+<script src="https://unpkg.com/scrollreveal"></script>
+<!-- END: External Resources -->
+<!-- BEGIN: Tailwind Configuration -->
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              cream: '#F9F8F6',
+              sage: '#4B7B52', // More vibrant version of sage
+              emerald: '#2D5A27',
+              gold: '#D4AF37',
+              charcoal: '#1A1A1A',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Poppins', 'sans-serif'],
+          },
+          animation: {
+            'blob': 'blob 7s infinite',
+          },
+          keyframes: {
+            blob: {
+              '0%': { transform: 'translate(0px, 0px) scale(1)' },
+              '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+              '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+              '100%': { transform: 'translate(0px, 0px) scale(1)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+<!-- END: Tailwind Configuration -->
+<!-- BEGIN: Custom Styles -->
+<style data-purpose="global-styles">
+    body {
+      background-color: #F9F8F6;
+      color: #1A1A1A;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Poppins', sans-serif;
+    }
+    .glass-nav {
+      background: rgba(249, 248, 246, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(75, 123, 82, 0.1);
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .glass-card:hover {
+      transform: translateY(-16px) scale(1.02);
+      box-shadow: 0 32px 64px -12px rgba(75, 123, 82, 0.2),
+                  0 0 0 1px rgba(75, 123, 82, 0.15),
+                  0 0 40px -8px rgba(75, 123, 82, 0.15);
+      background: rgba(255, 255, 255, 0.95);
+      border-color: rgba(75, 123, 82, 0.25);
+}
+    .hero-gradient {
+      background: radial-gradient(circle at top right, rgba(75, 123, 82, 0.08), transparent 40%),
+                  radial-gradient(circle at bottom left, rgba(212, 175, 55, 0.05), transparent 40%);
+    }
+    .text-balance {
+      text-wrap: balance;
+    }
+    /* Card hover: lift + glow effect */
+    .glass-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card:hover {
+      transform: translateY(-14px);
+      box-shadow: 0 30px 60px -12px rgba(75, 123, 82, 0.2),
+                  0 0 0 1px rgba(75, 123, 82, 0.08);
+      background: rgba(255, 255, 255, 0.95);
+      border-color: rgba(75, 123, 82, 0.25);
+    }
+
+    /* Skill bar: mulai dari 0, animasi saat muncul */
+    .skill-bar-fill {
+      width: 0%;
+      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .skill-bar-fill.animated {
+      width: var(--target-width);
+    }
+  </style>
+<!-- END: Custom Styles -->
+</head>
+<body class="antialiased selection:bg-brand-sage selection:text-white">
+<!-- BEGIN: Background Elements -->
+<div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+<div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-brand-sage/5 rounded-full blur-[120px] animate-blob"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-brand-gold/5 rounded-full blur-[120px] animate-blob animation-delay-2000"></div>
+</div>
+<!-- END: Background Elements -->
+<!-- BEGIN: Sticky Navbar -->
+<nav class="fixed top-0 left-0 right-0 z-50 glass-nav" data-purpose="main-navigation">
+<div class="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
+<div class="text-brand-sage font-display font-extrabold text-2xl tracking-tighter">
+      MF<span class="text-brand-gold">.</span>
+</div>
+<div class="hidden md:flex space-x-10 text-sm font-semibold tracking-wide uppercase">
+<a class="hover:text-brand-sage transition-colors relative group" href="#about">
+        About
+        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-sage transition-all group-hover:w-full"></span>
+</a>
+<a class="hover:text-brand-sage transition-colors relative group" href="#achievements">
+        Achievements
+        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-sage transition-all group-hover:w-full"></span>
+</a>
+<a class="hover:text-brand-sage transition-colors relative group" href="#experience">
+        Experience
+        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-sage transition-all group-hover:w-full"></span>
+</a>
+<a class="hover:text-brand-sage transition-colors relative group" href="#skills">
+  Skills
+  <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-sage transition-all group-hover:w-full"></span>
+</a>
+<a class="hover:text-brand-sage transition-colors relative group" href="#projects">
+  Projects
+  <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-sage transition-all group-hover:w-full"></span>
+</a>
+<a class="px-5 py-2 bg-brand-sage text-white rounded-full hover:bg-brand-emerald transition-all shadow-md shadow-brand-sage/20" href="#contact">Contact</a>
+</div>
+<div class="md:hidden">
+<i class="w-6 h-6" data-lucide="menu"></i>
+</div>
+</div>
+</nav>
+<!-- END: Sticky Navbar -->
+<main class="hero-gradient">
+<!-- BEGIN: Hero Section -->
+<section class="min-h-screen flex items-center justify-center pt-20 px-6 relative" data-purpose="hero-section" id="hero">
+<div class="max-w-5xl w-full text-center space-y-10">
+<div class="space-y-6">
+<div class="reveal-y">
+<p class="text-brand-sage font-bold tracking-[0.3em] uppercase text-xs mb-4 inline-block px-4 py-1 rounded-full bg-brand-sage/5 border border-brand-sage/10">Welcome to my digital space</p>
+<h1 class="font-extrabold text-brand-charcoal leading-[0.9] tracking-tighter text-balance text-5xl md:text-7xl lg:text-8xl">
+            Muhammad <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-sage to-brand-emerald">Farhan</span>
+</h1>
+</div>
+<div class="reveal-y" style="transition-delay: 200ms;">
+<h2 class="text-xl md:text-3xl text-brand-charcoal/80 font-semibold max-w-3xl mx-auto">
+            Teknik Informatika Student @ <span class="text-brand-emerald border-b-2 border-brand-gold/30">UNIVERSITAS NEGERI SEMARANG</span>
+</h2>
+<p class="text-2xl md:text-3xl font-light italic text-brand-charcoal/50 mt-4">
+            Developer • Strategist • Creative Thinker
+          </p>
+</div>
+</div>
+<div class="pt-10 reveal-y" style="transition-delay: 400ms;">
+<a class="group inline-flex items-center px-10 py-5 bg-brand-sage text-white rounded-2xl font-bold text-xl hover:bg-brand-emerald transition-all transform hover:-translate-y-1 shadow-2xl shadow-brand-sage/30" href="#achievements">
+          Explore My Journey
+          <i class="ml-3 w-6 h-6 group-hover:translate-y-1 transition-transform" data-lucide="arrow-down"></i>
+</a>
+</div>
+</div>
+</section>
+<!-- END: Hero Section -->
+<!-- BEGIN: About Section -->
+<section class="py-32 px-6 relative z-10" data-purpose="about-section" id="about">
+<div class="max-w-5xl mx-auto">
+<div class="flex flex-col lg:flex-row items-center gap-16">
+<div class="flex-1 space-y-8 reveal-x-left">
+<div class="inline-flex items-center gap-4">
+<span class="w-16 h-1 bg-brand-gold rounded-full"></span>
+<h2 class="text-4xl font-extrabold tracking-tight">About Me</h2>
+</div>
+<p class="text-xl text-brand-charcoal/80 leading-relaxed">
+  Halo! Saya <span class="font-bold text-brand-sage decoration-brand-gold decoration-2 underline-offset-4 underline">Farhan</span>, mahasiswa Teknik Informatika di Universitas Negeri Semarang (UNNES). Selama 2 tahun terakhir, saya aktif mengembangkan diri di bidang <span class="italic font-medium">Frontend Development, Mobile Development, UI/UX Design, dan Entrepreneurship.</span>
+</p>
+<p class="text-xl text-brand-charcoal/80 leading-relaxed">
+  Saya percaya desain yang baik dan kode yang bersih bisa menciptakan pengalaman digital yang bermakna — bukan sekadar produk yang berfungsi, tapi produk yang dirasakan.
+</p>
+<div class="grid grid-cols-2 gap-6 pt-4">
+  <div class="p-4 rounded-xl bg-white/50 border border-brand-sage/10">
+    <p class="text-brand-sage font-bold text-3xl">2+</p>
+    <p class="text-sm text-brand-charcoal/60 uppercase font-semibold">Years Experience</p>
+  </div>
+  <div class="p-4 rounded-xl bg-white/50 border border-brand-sage/10">
+    <p class="text-brand-sage font-bold text-3xl">4</p>
+    <p class="text-sm text-brand-charcoal/60 uppercase font-semibold">Interests</p>
+  </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Profile Image Area -->
+<div class="w-full lg:w-80 flex-shrink-0 reveal-x-right">
+<div class="relative group">
+<div class="absolute -inset-4 bg-gradient-to-tr from-brand-sage to-brand-gold opacity-20 blur-2xl group-hover:opacity-40 transition-opacity"></div>
+<div class="relative w-full aspect-square rounded-[2rem] bg-white border-2 border-brand-sage/10 flex items-center justify-center overflow-hidden shadow-2xl">
+<i class="w-24 h-24 text-brand-sage/20" data-lucide="user"></i>
+<!-- Abstract Shape Overlay -->
+<div class="absolute bottom-0 right-0 w-24 h-24 bg-brand-gold/10 rounded-tl-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: About Section -->
+<!-- BEGIN: Achievements Section -->
+<section class="py-32 px-6" data-purpose="achievements-section" id="achievements">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-20 reveal-y">
+      <h2 class="text-4xl md:text-5xl font-extrabold mb-6">Milestones & Achievements</h2>
+      <p class="text-xl text-brand-charcoal/60 max-w-2xl mx-auto">Pencapaian yang saya raih sebagai bentuk pengembangan diri yang konsisten.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+
+      <!-- Card 1: Catur -->
+      <div class="glass-card p-10 rounded-[2.5rem] flex flex-col h-full reveal-y" style="transition-delay: 100ms;">
+        <div class="mb-6 w-16 h-16 bg-brand-sage/10 rounded-2xl flex items-center justify-center text-brand-sage">
+          <i class="w-8 h-8" data-lucide="trophy"></i>
+        </div>
+        <span class="text-sm font-bold text-brand-gold mb-3">2024</span>
+        <h3 class="text-2xl font-bold mb-4 leading-tight">Juara 3 Novice Chess Championship</h3>
+        <p class="text-brand-charcoal/70 leading-relaxed">
+          Turnamen catur antar mahasiswa tingkat kota Semarang yang diikuti tiga universitas — UNDIP, UDINUS, dan UNNES.
+        </p>
+      </div>
+
+      <!-- Card 2: PKM -->
+      <div class="glass-card p-10 rounded-[2.5rem] flex flex-col h-full reveal-y" style="transition-delay: 200ms;">
+        <div class="mb-6 w-16 h-16 bg-brand-emerald/10 rounded-2xl flex items-center justify-center text-brand-emerald">
+          <i class="w-8 h-8" data-lucide="file-check"></i>
+        </div>
+        <span class="text-sm font-bold text-brand-gold mb-3">2026</span>
+        <h3 class="text-2xl font-bold mb-4 leading-tight">Lolos Seleksi Internal PKM UNNES</h3>
+        <p class="text-brand-charcoal/70 leading-relaxed">
+          Proposal Program Kreativitas Mahasiswa berhasil lolos seleksi internal Universitas Negeri Semarang tahun 2026.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- END: Achievements Section -->
+ <!-- BEGIN: Skills Section -->
+<section class="py-32 px-6" data-purpose="skills-section" id="skills">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-20 reveal-y">
+      <h2 class="text-4xl md:text-5xl font-extrabold mb-6">Skills & Tech Stack</h2>
+      <p class="text-xl text-brand-charcoal/60 max-w-2xl mx-auto">Teknologi dan tools yang saya gunakan untuk membangun produk digital.</p>
+    </div>
+
+    <!-- Frontend Skills -->
+    <div class="mb-16 reveal-y">
+      <p class="text-sm font-bold tracking-widest uppercase text-brand-gold mb-8">Frontend</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+        <div class="glass-card p-6 rounded-2xl text-center">
+          <div class="text-4xl mb-3">🌐</div>
+          <p class="font-bold mb-3">HTML / CSS</p>
+          <div class="w-full bg-brand-sage/10 rounded-full h-1.5">
+            <div class="bg-brand-sage h-1.5 rounded-full skill-bar-fill" style="--target-width: 90%"></div>
+          </div>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl text-center">
+          <div class="text-4xl mb-3">⚡</div>
+          <p class="font-bold mb-3">JavaScript</p>
+          <div class="w-full bg-brand-sage/10 rounded-full h-1.5">
+            <div class="bg-brand-sage h-1.5 rounded-full skill-bar-fill" style="--target-width: 75%"></div>
+          </div>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl text-center">
+          <div class="text-4xl mb-3">🎨</div>
+          <p class="font-bold mb-3">Tailwind CSS</p>
+          <div class="w-full bg-brand-sage/10 rounded-full h-1.5">
+            <div class="bg-brand-sage h-1.5 rounded-full skill-bar-fill" style="--target-width: 80%"></div>
+          </div>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl text-center">
+          <div class="text-4xl mb-3">⚛️</div>
+          <p class="font-bold mb-3">React</p>
+          <div class="w-full bg-brand-sage/10 rounded-full h-1.5">
+            <div class="bg-brand-sage h-1.5 rounded-full skill-bar-fill" style="--target-width: 60%"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Backend & AI Skills -->
+    <div class="mb-16 reveal-y" style="transition-delay: 200ms;">
+      <p class="text-sm font-bold tracking-widest uppercase text-brand-gold mb-8">Backend & AI</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+        <div class="glass-card p-6 rounded-2xl text-center">
+          <div class="text-4xl mb-3">🐍</div>
+          <p class="font-bold mb-3">Python</p>
+          <div class="w-full bg-brand-emerald/10 rounded-full h-1.5">
+            <div class="bg-brand-emerald h-1.5 rounded-full skill-bar-fill" style="--target-width: 70%"></div>
+          </div>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl text-center">
+          <div class="text-4xl mb-3">🗄️</div>
+          <p class="font-bold mb-3">SQL / MySQL</p>
+          <div class="w-full bg-brand-emerald/10 rounded-full h-1.5">
+            <div class="bg-brand-emerald h-1.5 rounded-full skill-bar-fill" style="--target-width: 65%"></div>
+          </div>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl text-center">
+          <div class="text-4xl mb-3">🤖</div>
+          <p class="font-bold mb-3">Machine Learning</p>
+          <div class="w-full bg-brand-emerald/10 rounded-full h-1.5">
+            <div class="bg-brand-emerald h-1.5 rounded-full skill-bar-fill" style="--target-width: 55%"></div>
+          </div>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl text-center">
+          <div class="text-4xl mb-3">👁️</div>
+          <p class="font-bold mb-3">Computer Vision</p>
+          <div class="w-full bg-brand-emerald/10 rounded-full h-1.5">
+            <div class="bg-brand-emerald h-1.5 rounded-full skill-bar-fill" style="--target-width: 50%"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Tools & Other -->
+    <div class="reveal-y" style="transition-delay: 400ms;">
+      <p class="text-sm font-bold tracking-widest uppercase text-brand-gold mb-8">Tools & Other</p>
+      <div class="flex flex-wrap gap-4">
+        <span class="px-5 py-2.5 rounded-full bg-white/70 border border-brand-sage/10 font-medium text-brand-charcoal/70">🔧 Git & GitHub</span>
+        <span class="px-5 py-2.5 rounded-full bg-white/70 border border-brand-sage/10 font-medium text-brand-charcoal/70">🐳 Docker</span>
+        <span class="px-5 py-2.5 rounded-full bg-white/70 border border-brand-sage/10 font-medium text-brand-charcoal/70">📊 Figma</span>
+        <span class="px-5 py-2.5 rounded-full bg-white/70 border border-brand-sage/10 font-medium text-brand-charcoal/70">☁️ Firebase</span>
+        <span class="px-5 py-2.5 rounded-full bg-white/70 border border-brand-sage/10 font-medium text-brand-charcoal/70">📱 Flutter</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- END: Skills Section -->  
+ <!-- BEGIN: Projects Section -->
+<section class="py-32 px-6" data-purpose="projects-section" id="projects">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-20 reveal-y">
+      <h2 class="text-4xl md:text-5xl font-extrabold mb-6">Projects</h2>
+      <p class="text-xl text-brand-charcoal/60 max-w-2xl mx-auto">Proyek nyata yang saya bangun sebagai wujud eksplorasi ide dan penerapan teknologi.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- Card 1: Gawean -->
+      <div class="glass-card p-10 rounded-[2.5rem] flex flex-col h-full reveal-y" style="transition-delay: 100ms;">
+        <div class="mb-6 w-16 h-16 bg-brand-sage/10 rounded-2xl flex items-center justify-center text-brand-sage">
+          <i class="w-8 h-8" data-lucide="briefcase"></i>
+        </div>
+        <span class="text-sm font-bold text-brand-gold mb-3">Marketplace · UMKM</span>
+        <h3 class="text-2xl font-bold mb-4 leading-tight">Gawean.id</h3>
+        <p class="text-brand-charcoal/70 leading-relaxed mb-6">
+          Platform two-sided marketplace yang menghubungkan pencari jasa dengan pekerja harian lepas (tukang, teknisi, kebersihan) secara cepat dan transparan. Dilengkapi CV Digital, sistem escrow, dan dashboard B2B.
+        </p>
+        <div class="flex flex-wrap gap-2 mb-8 mt-auto">
+          <span class="px-3 py-1 rounded-full bg-brand-sage/10 text-brand-sage text-xs font-semibold">Flutter</span>
+          <span class="px-3 py-1 rounded-full bg-brand-sage/10 text-brand-sage text-xs font-semibold">Firebase</span>
+          <span class="px-3 py-1 rounded-full bg-brand-sage/10 text-brand-sage text-xs font-semibold">UI/UX</span>
+        </div>
+        <a href="#" class="inline-flex items-center gap-2 text-brand-sage font-bold hover:text-brand-emerald transition-colors">
+          Lihat Proyek <i class="w-4 h-4" data-lucide="arrow-right"></i>
+        </a>
+      </div>
+
+      <!-- Card 2: LabShare -->
+      <div class="glass-card p-10 rounded-[2.5rem] flex flex-col h-full reveal-y" style="transition-delay: 200ms;">
+        <div class="mb-6 w-16 h-16 bg-brand-emerald/10 rounded-2xl flex items-center justify-center text-brand-emerald">
+          <i class="w-8 h-8" data-lucide="flask-conical"></i>
+        </div>
+        <span class="text-sm font-bold text-brand-gold mb-3">Marketplace · Edukasi</span>
+        <h3 class="text-2xl font-bold mb-4 leading-tight">LabShare</h3>
+        <p class="text-brand-charcoal/70 leading-relaxed mb-6">
+          Platform sewa-menyewa alat praktikum berbasis komunitas mahasiswa. Membantu mahasiswa teknik dan sains mendapatkan akses Arduino, sensor, dan alat ukur dengan biaya terjangkau.
+        </p>
+        <div class="flex flex-wrap gap-2 mb-8 mt-auto">
+          <span class="px-3 py-1 rounded-full bg-brand-emerald/10 text-brand-emerald text-xs font-semibold">React</span>
+          <span class="px-3 py-1 rounded-full bg-brand-emerald/10 text-brand-emerald text-xs font-semibold">Tailwind</span>
+          <span class="px-3 py-1 rounded-full bg-brand-emerald/10 text-brand-emerald text-xs font-semibold">MySQL</span>
+        </div>
+        <a href="#" class="inline-flex items-center gap-2 text-brand-sage font-bold hover:text-brand-emerald transition-colors">
+          Lihat Proyek <i class="w-4 h-4" data-lucide="arrow-right"></i>
+        </a>
+      </div>
+
+      <!-- Card 3: Fitsme -->
+      <div class="glass-card p-10 rounded-[2.5rem] flex flex-col h-full reveal-y" style="transition-delay: 300ms;">
+        <div class="mb-6 w-16 h-16 bg-brand-sage/10 rounded-2xl flex items-center justify-center text-brand-sage">
+          <i class="w-8 h-8" data-lucide="sparkles"></i>
+        </div>
+        <span class="text-sm font-bold text-brand-gold mb-3">AI · Fashion Tech</span>
+        <h3 class="text-2xl font-bold mb-4 leading-tight">Fitsme</h3>
+        <p class="text-brand-charcoal/70 leading-relaxed mb-6">
+          Platform asisten fashion digital berbasis AI yang memberikan rekomendasi gaya dan warna pakaian secara personal. Dirancang untuk anak muda dan profesional yang ingin tampil percaya diri setiap hari.
+        </p>
+        <div class="flex flex-wrap gap-2 mb-8 mt-auto">
+          <span class="px-3 py-1 rounded-full bg-brand-sage/10 text-brand-sage text-xs font-semibold">Python</span>
+          <span class="px-3 py-1 rounded-full bg-brand-sage/10 text-brand-sage text-xs font-semibold">AI/ML</span>
+          <span class="px-3 py-1 rounded-full bg-brand-sage/10 text-brand-sage text-xs font-semibold">Flutter</span>
+        </div>
+        <a href="#" class="inline-flex items-center gap-2 text-brand-sage font-bold hover:text-brand-emerald transition-colors">
+          Lihat Proyek <i class="w-4 h-4" data-lucide="arrow-right"></i>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- END: Projects Section -->
+<!-- BEGIN: Experience Section -->
+<section class="py-32 px-6" data-purpose="experience-section" id="experience">
+<div class="max-w-4xl mx-auto">
+<div class="flex flex-col items-center mb-16 reveal-y">
+<h2 class="text-4xl font-extrabold mb-4">Leadership &amp; Experience</h2>
+<div class="w-24 h-1.5 bg-brand-sage rounded-full"></div>
+</div>
+<div class="space-y-12">
+<!-- Experience Item 1 -->
+<div class="group flex flex-col md:flex-row gap-8 items-start reveal-x-left">
+<div class="w-20 h-20 shrink-0 bg-white rounded-3xl shadow-xl flex items-center justify-center border border-brand-sage/5 group-hover:bg-brand-sage group-hover:text-white transition-all duration-500 transform group-hover:-rotate-6">
+<i class="w-10 h-10" data-lucide="users"></i>
+</div>
+<div class="flex-1">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-3">
+<h3 class="text-2xl font-bold text-brand-charcoal group-hover:text-brand-sage transition-colors">Ketua UKM CATUR UNNES</h3>
+<span class="px-4 py-1 rounded-full bg-brand-sage/10 text-brand-sage text-sm font-bold">Jan 2026 - Present</span>
+</div>
+<p class="text-lg text-brand-charcoal/70 leading-relaxed">
+              Memimpin organisasi catur tingkat universitas, mengelola program kerja strategis, dan membina atlet untuk kompetisi nasional dengan visi modernisasi organisasi melalui teknologi.
+            </p>
+</div>
+</div>
+<!-- Experience Item 2 -->
+<div class="group flex flex-col md:flex-row gap-8 items-start reveal-x-left" style="transition-delay: 200ms;">
+<div class="w-20 h-20 shrink-0 bg-white rounded-3xl shadow-xl flex items-center justify-center border border-brand-sage/5 group-hover:bg-brand-sage group-hover:text-white transition-all duration-500 transform group-hover:rotate-6">
+<i class="w-10 h-10" data-lucide="clipboard-list"></i>
+</div>
+<div class="flex-1">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-3">
+<h3 class="text-2xl font-bold text-brand-charcoal group-hover:text-brand-sage transition-colors">Sekretaris PALATIKOM UNNES</h3>
+<span class="px-4 py-1 rounded-full bg-brand-sage/10 text-brand-sage text-sm font-bold">Jan 2026 - Present</span>
+</div>
+<p class="text-lg text-brand-charcoal/70 leading-relaxed">
+              Bertanggung jawab atas administrasi organisasi pecinta alam mahasiswa Teknik Informatika, memastikan dokumentasi digital dan koordinasi internal berjalan efektif dan paperless.
+            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Experience Section -->
+<!-- BEGIN: Footer / Contact -->
+<footer class="py-32 px-6 relative overflow-hidden" data-purpose="footer-section" id="contact">
+<!-- Decorative background blob for footer -->
+<div class="absolute bottom-0 right-0 w-96 h-96 bg-brand-sage/10 blur-[100px] rounded-full -mb-48 -mr-24"></div>
+<div class="max-w-6xl mx-auto text-center space-y-12 relative z-10">
+<div class="space-y-6 reveal-y">
+<h2 class="text-5xl font-extrabold tracking-tight">Mari Berkolaborasi</h2>
+<p class="text-xl text-brand-charcoal/60 max-w-xl mx-auto leading-relaxed">
+          Saya selalu terbuka untuk diskusi mengenai pengembangan web, AI, maupun peluang kepemimpinan lainnya.
+        </p>
+</div>
+<div class="flex justify-center gap-8 reveal-y">
+<a class="w-16 h-16 flex items-center justify-center bg-white shadow-lg border border-brand-sage/10 rounded-2xl hover:bg-brand-sage hover:text-white hover:-translate-y-2 transition-all duration-300" href="https://linkedin.com" target="_blank" title="LinkedIn">
+<i class="w-8 h-8" data-lucide="linkedin"></i>
+</a>
+<a class="w-16 h-16 flex items-center justify-center bg-brand-sage text-white shadow-xl shadow-brand-sage/30 rounded-2xl hover:bg-brand-emerald hover:-translate-y-2 transition-all duration-300" href="mailto:farhan@student.unnes.ac.id" title="Email">
+<i class="w-8 h-8" data-lucide="mail"></i>
+</a>
+<a class="w-16 h-16 flex items-center justify-center bg-white shadow-lg border border-brand-sage/10 rounded-2xl hover:bg-brand-sage hover:text-white hover:-translate-y-2 transition-all duration-300" href="https://github.com" target="_blank" title="GitHub">
+<i class="w-8 h-8" data-lucide="github"></i>
+</a>
+</div>
+<div class="pt-20 border-t border-brand-sage/10 text-sm font-medium text-brand-charcoal/40 flex flex-col md:flex-row justify-between items-center gap-6">
+<p>© 2024 Muhammad Farhan. Made with <span class="text-brand-sage">passion</span> in Semarang.</p>
+<div class="flex items-center gap-8">
+<p class="flex items-center gap-2">
+<i class="w-4 h-4 text-brand-sage" data-lucide="map-pin"></i>
+            Semarang, Indonesia
+          </p>
+</div>
+</div>
+</div>
+</footer>
+<!-- END: Footer / Contact -->
+</main>
+<!-- BEGIN: Scripts -->
+<script data-purpose="icon-initialization">
+  // Initialize Lucide icons
+  lucide.createIcons();
+</script>
+<script data-purpose="animations">
+  // Initialize ScrollReveal for subtle reveal animations
+  const sr = ScrollReveal({
+    origin: 'bottom',
+    distance: '30px',
+    duration: 1000,
+    delay: 200,
+    reset: false // Animation happens only once
+  });
+
+  sr.reveal('.reveal-y');
+  sr.reveal('.reveal-x-left', { origin: 'left', distance: '50px' });
+  sr.reveal('.reveal-x-right', { origin: 'right', distance: '50px' });
+</script>
+<script data-purpose="smooth-scroll-interaction">
+  // Smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+</script>
+<script data-purpose="skillbar-animation">
+  // Skill bar mengisi saat masuk viewport
+  const skillBars = document.querySelectorAll('.skill-bar-fill');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animated');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  skillBars.forEach(bar => observer.observe(bar));
+</script>
+<!-- END: Scripts -->
+</body></html>
