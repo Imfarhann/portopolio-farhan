@@ -1,2 +1,0 @@
-# portopolioku
-belajar membuat portopolio
